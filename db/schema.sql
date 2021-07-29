@@ -2,31 +2,47 @@ DROP DATABASE IF EXISTS employee_db;
 CREATE DATABASE employee_db;
 USE employee_db;
 
-CREATE TABLE department(
-    dep_id INT AUTO_INCREMENT,
-    name VARCHAR(30) NOT NULL,
-    PRIMARY KEY (dep_id),
-    UNIQUE (name)
+CREATE TABLE department (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(30) NOT NULL
 );
 
-CREATE TABLE position(
-    pos_id INT AUTO_INCREMENT,
+INSERT INTO department (name) 
+VALUES ('Top'), ('Pres'), ('Direct'), ('Bottom');
+
+CREATE TABLE position (
+    id INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(30) NOT NULL,
-    salary DECIMAL(10,2) NOT NULL,
-    dep_id INT NOT NULL,
-    PRIMARY KEY (pos_id),
-    FOREIGN KEY (department_id) REFERENCES department(dep_id) ON DELETE CASCADE,
-    CONSTRAINT uq_pos UNIQUE (title, department_id)
+    salary DECIMAL NOT NULL,
+    dep_id INT NOT NULL
 );
 
-CREATE TABLE employee(
-    emp_id INT AUTO_INCREMENT,
+INSERT INTO position (title, salary, dep_id)
+VALUES
+    ('CEO', 1000000, 1),
+    ('COO', 900000, 1),
+    ('President', 800000, 2),
+    ('Vice Presidnet', 750000, 2),
+    ('Director', 250000, 3),
+    ('Assistant Director',100000, 3),
+    ('Employee', 80000, 4),
+    ('Intern', 50000, 4);
+
+CREATE TABLE employee (
+    id INT AUTO_INCREMENT PRIMARY KEY,
     first_name VARCHAR(30) NOT NULL,
     last_name VARCHAR(30) NOT NULL,
-    pos_id INT NOT NULL,
-    manager_id INT REFERENCES id,
-    PRIMARY KEY (emp_id),
-    FOREIGN KEY (position_id) REFERENCES position(pos_id) ON DELETE CASCADE,
-    CONSTRAINT uq_emp UNIQUE (first_name, last_name, pos_id, manager_id)
+    role_id INT NOT NULL,
+    manager_id INT NULL
 );
 
+INSERT INTO employee (first_name, last_name, role_id, manager_id)
+VALUES
+    ('Corinne', 'Axl', 1, 0),
+    ('Lorna', 'Silas', 2, 1),
+    ('Madelne', 'Dex', 3, 0),
+    ('Frederick', 'Homer', 4, 3),
+    ('Lovell', 'Alden', 5, 0),
+    ('Tom', 'Shana', 6, 5),
+    ('Alva', 'Clifton', 7, 5),
+    ('Benji', 'Kyro', 8, 5);

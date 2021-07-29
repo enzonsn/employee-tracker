@@ -1,7 +1,7 @@
-use employee_db;
+USE employee_db;
 
 INSERT INTO department (name) 
-VALUES ('Sales'), ('Engineering'), ('Marketing'), ('Legal'), ('Finance');
+VALUES ('Top'), ('Pres'), ('Direct'), ('Bottom');
 
 INSERT INTO position (title, salary, dep_id)
 VALUES
