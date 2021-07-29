@@ -19,7 +19,7 @@ function start(){
         message: 'What would you like?',
         name: 'action',
         choices: [
-            'View', 'Add', 'Delete', "Change employee's position", 'Total', 'Quit'
+            'View', 'Add', 'Delete', "Change employee's position", 'Quit'
         ]
     }).then(function(choice){
         switch(choice.action){
@@ -97,8 +97,7 @@ function viewEmployees(){
      employee.manager_id AS manager 
      FROM employee 
      LEFT JOIN position ON employee.role_id = position.id 
-     LEFT JOIN department ON position.dep_id = department.id 
-     LEFT JOIN employee manager ON manager.manager_id = employee.manager_id;`, 
+     LEFT JOIN department ON position.dep_id = department.id;`, 
      function(err, res){
         if(err) throw err
         console.table(res);
@@ -162,7 +161,7 @@ function createDepartment(){
             name: answer.department
         }, function(err, res){ 
             if(err) throw err;
-            console.long('New department has been created!');
+            console.log('New department has been created!');
             start();
         });
     });
@@ -182,7 +181,7 @@ function createPosition(){
         ]).then(function(answer){
             let dep = res.find(department => department.name === answer.dep_name);
             connection.query('INSERT INTO position SET ?', {
-                title: answer.title, dep_id: dep, salary: answer.salary
+                title: answer.title, dep_id: dep.id, salary: answer.salary
             }, function(err, res){ 
                 if(err) throw err; 
                 console.log('New role has been created!');
