@@ -36,7 +36,7 @@ Tun 'npm start' in the terminal to start Employee Tracker. Use up and down arrow
 ## Media
 
 Link to youtube DEMO:
-[![DEMO](http://img.youtube.com/vi/JnY0kUibGyA/0.jpg)](https://youtu.be/JnY0kUibGyA)
+[![DEMO](http://img.youtube.com/vi/WnHrPecsAoM/0.jpg)](https://youtu.be/WnHrPecsAoM  "")
 
 ## Contributing
 
